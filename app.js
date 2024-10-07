@@ -19,9 +19,13 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+
+
 /* CORS (Cross-Origin Resource Sharing) */
 var cors = require('cors');
 app.use(cors());
+
+
 
 /* Session */
 var session = require('express-session');
