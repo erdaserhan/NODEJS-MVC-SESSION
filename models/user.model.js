@@ -41,7 +41,7 @@ User.getUserById = (id, resultat) => {
 
         // Si OK => res
         console.log("Pas d'utilisateur avec cet ID");
-        resultat({ type: "ERR_NOT_FOUND"}, null)
+        resultat({ type: "ERR_NOT_FOUND"}, null);
     });
 };
 
@@ -64,7 +64,7 @@ User.getUserByEmail = (email, resultat) => {
 
         // Si OK => res
         console.log("Pas d'utilisateur avec cet email");
-        resultat({ type: "ERR_NOT_FOUND"}, null)
+        resultat({ type: "ERR_NOT_FOUND"}, null);
     });
 };
 
