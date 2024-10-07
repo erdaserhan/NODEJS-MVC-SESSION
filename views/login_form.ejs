@@ -2,19 +2,16 @@
 
     <main>
       <h1><%= title %></h1>
-      <h3><a href="/users/login">Déjà enregistré ?</a></h3>
+      <h3><a href="/users/register">Pas encore enregistré ?</a></h3>
       <br>
-      <form action="/users/register" method="POST">
-        <label for="nom">Nom</label>
-        <input type="text" name="nom" id="nom" required autofocus>
-        <br>
+      <form action="/users/login" method="POST">
         <label for="email">E-mail</label>
         <input type="email" name="email" id="email" required>
         <br>
         <label for="motdepasse">Mot de passe : </label>
         <input type="password" name="motdepasse" id="motdepasse" required>
         <br>
-        <input type="submit" value="S'enregistrer">
+        <input type="submit" value="Se connecter">
       </form>
     </main>
 
