@@ -1,0 +1,36 @@
+<%- include('header.ejs') -%>
+    <header>
+        <h1><%= title %></h1>
+    </header>
+    <p><a href="/">Retour vers l'accueil</a></p>
+    <section>
+        <% if (donnees.length) { %>
+        <table>
+            <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Message</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(var i=0; i<donnees.length; i++) { %>
+            <tr>
+                <td><%= donnees[i].nom %></td>
+                <td><%= donnees[i].message %></td>
+                <td><%= moment(donnees[i].datemessage).format('[Le] DD MMMM YYYY [à] HH:mm:ss') %></td>
+                <td><a href="messages/read/<%= donnees[i].id %>">Détails</a></td>
+                <td><a href="messages/edit/<%= donnees[i].id %>">Modifier</a></td>
+                <td><a href="messages/confirm/<%= donnees[i].id %>">Supprimer</a></td>
+            </tr>    
+            <% } %>
+        </tbody>
+        </table>
+        <% } %>
+        <% if (!donnees.length) { %>
+        <p>Pas de messages actuellement !</p>
+        <% } %>
+    </section>
+    <p><a href="/">Retour vers l'accueil</a></p>
+<%- include('footer.ejs') -%>

@@ -1,0 +1,17 @@
+<%- include('header.ejs') -%>
+
+    <main>
+      <h1><%= title %></h1>
+      <form action="/messages/update/<%= donnees.id %>" method="post">
+        <input type="hidden" name="id" value="<%= donnees.id %>">
+        <label for="nom">Votre nom</label><br>
+        <input type="text" name="nom" id="nom" value="<%= donnees.nom %>"><br>
+        <br>
+        <label for="msg">Votre message</label><br>
+        <input type="text" name="msg" id="msg" value="<%= donnees.message %>"><br>
+        <br><br>
+        <input type="submit" value="Envoyer les données">
+      </form>
+    </main>
+
+<%- include('footer.ejs') -%>
