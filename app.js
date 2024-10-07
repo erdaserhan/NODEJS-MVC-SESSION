@@ -18,6 +18,48 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+/* CORS (Cross-Origin Resource Sharing) */
+var cors = require('cors');
+app.use(cors());
+
+/* Session */
+var session = require('express-session');
+require('dotenv').config();
+var connection = require('./models/db.js');
+var mysqlStore = require('express-mysql-session')(session);
+
+const options = {
+  connectionLimit:10,
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  post: process.env.DB_PORT,
+  createDatabaseTable: true
+};
+
+const sessionStore = new mysqlStore(options);
+
+const IN_PROD = process.env.NODE_ENV ==='production';
+const TWO_HOURS = 1000 * 60 * 60 * 2;
+
+app.use(session({
+  name: process.env.SESS_NAME,
+  secret: process.env.SESS_SECRET,
+  resave:false,
+  saveUninitialized:false,
+  store:sessionStore,
+  cookie: {
+    sameSite: true,
+    httpOnly: true,
+    secure: IN_PROD,
+    maxAge: TWO_HOURS
+  }
+}));
+
+
+
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
